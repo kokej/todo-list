@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { TodoComponent } from './todo/todo.component';
+import { BaseComponent } from './base/base.component';
 
 @NgModule({
     imports: [
@@ -9,7 +11,7 @@ import { TodoComponent } from './todo/todo.component';
         ReactiveFormsModule
     ],
     declarations: [
-        TodoComponent
+        TodoComponent,
     ],
     exports: [
         TodoComponent
