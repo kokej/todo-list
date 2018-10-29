@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 export abstract class BaseComponent implements OnInit {
 
+    @Output() lockEvent: EventEmitter<any> = new EventEmitter();
+    @Input() id;
     locked: boolean;
 
     todoForm = this._fb.group({
+        id: [this.id],
         todo: ['', Validators.required],
         description: [''],
     });
@@ -17,16 +20,12 @@ export abstract class BaseComponent implements OnInit {
 
     unlock() {
         this.locked = false;
-/*         this.todoForm.patchValue({
-            todo: 'cenar',
-            description: 'es tarde!!'
-        });
- */    }
+        this.lockEvent.emit({locked: this.locked, todo: this.todoForm});
+    }
 
     lock() {
         this.locked = true;
-        // TODO: Use EventEmitter with form value
-        console.warn(this.todoForm.value);
+        this.lockEvent.emit({locked: this.locked, todo: this.todoForm});
     }
 
     ngOnInit() {

@@ -4,12 +4,10 @@ import { BaseComponent } from './../base/base.component';
 
 @Component({
     selector: 'app-todo',
-    templateUrl: './todo.component.html',
-    styleUrls: ['./todo.component.scss']
+    templateUrl: './todo.component.html'
 })
 export class TodoComponent extends BaseComponent implements OnInit {
 
-    locked: boolean;
     constructor(
         protected _fb: FormBuilder
     ) {
