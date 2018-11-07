@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 $black: #1c0f13;
 $grey: #f1e0c5;
 $white: #f3eff5;
@@ -18,35 +20,38 @@ html {
 }
 
 .box {
-  position: absolute;
-  width: 16em;
-  height: 9em;
-  padding: 10px 20px;
-  display: inline-block;
-  background-color: $white;
-  color: $black;
-  border-radius: 10pt;
-  transition: opacity 0.1s ease-in-out;
-  box-shadow: -6px 8px 18px rgba(0, 0, 0, 0.25);
-  z-index: 1;
-  cursor: move;
+    width: 200px;
+    height: 200px;
+    border: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    input {
+      background: transparent;
+      border: none;
+      &:active,
+      &:focus {
+          outline: none;
+        border: none;
+      }
+    }
+  
   &:active {
     z-index: 2;
-  }
-  &.green {
-    background-image: linear-gradient(135deg, $white, $grey);
-  }
-  &.dragging {
-    opacity: 0.6;
-  }
-  input {
-    background: transparent;
-    border: none;
-    &:active,
-    &:focus {
-        outline: none;
-      border: none;
-    }
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
   }
 }
 

@@ -3,8 +3,8 @@
 <app-todo (lockEvent)="onLock($event)" id="3" draggable="true"></app-todo> -->
 
 
-<div class="area" appMovableArea>
-    <app-todo class="box green" appMovable *ngFor="let todo of todos, index as i" (lockEvent)="onLock($event)" [id]="i+1"></app-todo>
+<div class="area">
+    <app-todo class="box green" *ngFor="let todo of todos, index as i" (lockEvent)="onLock($event)" [id]="i+1" cdkDrag></app-todo>
     <button class="add" (click)="add()">Add</button>
 </div>
 
