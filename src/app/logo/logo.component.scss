@@ -1,0 +1,53 @@
+@import '../../styles/settings.scss';
+@import '../../styles/mixins.scss';
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2em;
+    height: auto;
+    margin: auto;
+    $initialDelay: 0.5;
+    $delayIncrement: 0.3;
+    // todo: get $letters dynamically, it should
+    // reference the number of children (paths) in svg
+    $letters: 12;
+    $duration: $letters * $delayIncrement;
+
+    @keyframes line-anim {
+      25% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes fill {
+      to {
+        fill: $fluor-green;
+      }
+    }
+
+    fill: transparent;
+    padding-top: 1em;
+    animation: fill #{$delayIncrement}s ease forwards #{$duration * 3/2 +
+      $initialDelay}s;
+    path {
+      $delay: 0;
+      @for $i from 0 to $letters {
+        &:nth-child(#{$i + 1}) {
+          @include svg-logo-path(line-anim, $delay, $duration, $initialDelay);
+          $delay: $delay + $delayIncrement;
+        }
+      }
+    }
+  }
+}

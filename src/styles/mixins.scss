@@ -1,0 +1,101 @@
+/** 
+ * Contents
+ * 1 .- Media Queries
+ * 2 .- KeyFrames
+ * 3 .- Font-Size
+ */
+
+/** 
+ * 1 .- Media Queries
+ * Usage
+ *
+ * .wrapper {
+ *     margin: 0 auto;
+ *     width: 100%;
+ *     @include screen('tablet') {
+ *         width: 90%;
+ *      }
+ *
+ *      @include screen('desktop') {
+ *          width: 85%;
+ *      }
+ * }
+ */
+
+@mixin screen($size) {
+  $desktop: '(min-width: 1024px)';
+  $tablet: '(min-width: 768px) and (max-width: 1023px)';
+  $mobile: '(max-width: 767px)';
+  @if $size == desktop {
+    @media only screen and ($desktop) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media only screen and ($tablet) {
+      @content;
+    }
+  } @else if $size == mobile {
+    @media only screen and ($mobile) {
+      @content;
+    }
+  } @else {
+    @media only screen and ($size) {
+      @content;
+    }
+  }
+}
+
+/** 
+ * 2 .- KeyFrames
+ * Usage
+ *
+ * @include keyframes(animate) {
+ *  50% {
+ *      transform: rotate(90deg);
+ *  }
+ *  100% {
+ *      transform: rotate(-90deg);
+ *  }
+ * }
+ */
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+/** 
+ * 3 .- Font-Size
+ * Usage
+ *
+ * p {
+ *  @include font-size(14px)
+ * }
+ */
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin svg-logo-path($animation, $delay, $duration, $initialDelay) {
+  stroke-dashoffset: 0;
+  stroke: $fluor-green;
+  stroke-opacity: 1;
+  animation: #{$animation} #{$duration * 2 + $initialDelay}s ease-out #{$delay +
+    $initialDelay}s forwards;
+}
